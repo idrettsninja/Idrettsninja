@@ -1,31 +1,42 @@
 <?
-require("Database.php");
 
-
-	class Error{
-		
-		$this->isError = FALSE;
-		
-		function Error(){
+	class Error {
+	
+		function __construct(){
 			
-			if($this->isError == FALSE){
-				$this->clearErrors();
-			}
-			
-			
+			$this->errors 	= array();
+			$this->isError 	= FALSE;
 			
 		}
 		
-		function addError($id){
+		function addError($message){
 			
-			$db->
+			array_push($this->errors, $message);
+			
+			// There is now an error.
+			$this->isError = TRUE;
+				
+		}
+		
+		function errorCount(){
+			
+			return count($this->errors);
 			
 		}
 		
 		function clearErrors(){
-			if($this->isError == FALSE){
-				$this->error_array = array();
-			}
+		
+			$this->errors 	= array();
+			$this->isError 	= FALSE; 
+		
+		}
+		
+		function getErrors(){
+			
+			$this->clearErrors();
+			
+			return $this->errors;
+		
 		}
 	
 	}
